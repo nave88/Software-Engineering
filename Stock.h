@@ -3,6 +3,8 @@
 
 #include <string>
 
+//stock class for now is just a string of stock's ticker symbol
+
 namespace SE
 {
 	class Stock

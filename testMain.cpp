@@ -6,10 +6,10 @@ using namespace std;
 
 int main() 
 {
-	SE::Stock myStock("Evan");
+	SE::Stock myStock("RSH");
 	cout << myStock.getTickerSymbol() <<endl;
 	
-	SE::Money myFutureMonthlyUnemploymentBenefits(40000);
-	cout <<myFutureMonthlyUnemploymentBenefits.getCents() <<endl;
+	SE::Money m(40000);
+	cout <<m.getCents() <<endl;
 }
 
