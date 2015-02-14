@@ -29,6 +29,11 @@ namespace SE
 		handle = dlopen(libPath.c_str(), RTLD_NOW); //handle to shared library
 		
 		trade = (funcptr)dlsym(handle, "plugin"); //plugin function
+		
+		
+		portfolio = new Portfolio;
+		void (*init)(Portfolio *) = (void (*)(Portfolio *))dlsym(handle, "init");
+		init(portfolio);
 	 }
 	 
 	 void AutoStrategy::run(Date begin, Date end)
@@ -42,5 +47,7 @@ namespace SE
 		
 		string command = string("rm ") + fileName + ".o apiclient.o libplugin.so";
 		system(command.c_str());
+		
+		delete portfolio;
 	}
 }

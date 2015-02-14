@@ -1,18 +1,31 @@
 #ifndef AUTOSTRATEGY
 #define AUTOSTRATEGY
 
-#include "Date.h"
-#include "Portfolio.h"
-
-using namespace std;
+#include "headers.h"
 
 namespace SE
 {	
 	class AutoStrategy
 	{
-		AutoStrategy(Date begin, Date end, string strategyFileName);
+		private:
+		typedef void (*funcptr)(Date d);
+		funcptr trade;
+		void *handle;
+		string fileName;
+		Portfolio *portfolio;
 		
-		Portfolio &run(); 
+		public:
+		
+		AutoStrategy(string strategyFileName);
+		void run(Date begin, Date end);
+		
+		Portfolio getPortfolio()
+		{
+			return *portfolio;
+		}
+		
+		
+		~AutoStrategy(); 
 	};
 }
 

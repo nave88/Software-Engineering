@@ -29,7 +29,7 @@ Portfolio getPortfolio()
 	return backtest::getPortfolio_helper(*p);
 }
 
-void init(Portfolio &po)
+extern "C" void init(Portfolio *po)
 {
-	p = &po;
+	p = po;
 }

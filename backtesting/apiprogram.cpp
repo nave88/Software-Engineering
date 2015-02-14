@@ -27,7 +27,7 @@ namespace backtest
 	{
 		try
 		{
-			portfolio.buy(s,amt);
+			portfolio.sell(s,amt);
 		}
 		catch(int e)
 		{
