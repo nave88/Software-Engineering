@@ -19,7 +19,7 @@ bool sell(Stock s, unsigned amt)
 	return backtest::sell_helper(s, amt, *p);
 }
 
-Money getPrice(Stock s, Date d)
+Money getPriceOfStock(Stock s, Date d)
 {
 	return SE::getPrice(s,d);
 }

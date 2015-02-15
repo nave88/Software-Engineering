@@ -3,5 +3,5 @@
 
 bool buy(SE::Stock s, unsigned amt);
 bool sell(SE::Stock s, unsigned amt);
-SE::Money getPrice(SE::Stock s, SE::Date d);
+SE::Money getPriceOfStock(SE::Stock s, SE::Date d);
 SE::Portfolio getPortfolio();
