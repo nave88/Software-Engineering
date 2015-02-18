@@ -1,2 +1,2 @@
-target: testMain.cpp headers.h Stock.h Date.h Money.h Portfolio.h AutoStrategy.h Stock.cpp getPrice.h Money.cpp
-	g++ testMain.cpp Stock.cpp Money.cpp
+target: testMain.cpp headers.h Stock.h Date.h Money.h Portfolio.h AutoStrategy.h Stock.cpp getPrice.h Money.cpp getPrice.cpp
+	g++ -g testMain.cpp Stock.cpp Money.cpp Date.cpp Portfolio.cpp getPrice.cpp

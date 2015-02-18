@@ -1,28 +1,35 @@
 #ifndef MONEY
 #define MONEY
 
-//for now money is just a unit of cents. So $123.85 will be 12385.
-//I used long instead of unsigned long because we may need negative amounts.
+//Money holds a signed quantity of cents.
 
-#include <ostream>
+#include <iostream>
+using namespace std;
 
-	class Money
-	{
-		long cents;
-		
-		public:
-		
-		Money(long cents) : cents(cents) {}
-		Money(const Money &m) : cents(m.getCents()) {}
-		
-		long getCents() const {return cents;}
-	};
+class Money
+{
+	long cents;
 	
-	std::ostream & operator<<(std::ostream &o, const Money &m);
-	Money operator+(Money m1, Money m2);
-	Money operator-(Money m1, Money m2);
-	Money operator*(Money m, double d);
-	Money operator*(Money m, long l);
+	public:
+	
+	Money(long cents); //construct money object from number of cents
+	Money(const Money &m); //construct money object from another money object
+	
+	long getCents() const;
+	
+	Money operator+(Money m2);
+	Money operator-(Money m2);
+	Money operator*(double d);
+	Money operator*(long l);
+	Money operator*(int l);
+	Money operator*(unsigned l);
+	
+	Money operator+=(Money m);
+	Money operator-=(Money m);
+};
+	
+std::ostream & operator<<(std::ostream &o, const Money &m);
+
 
 
 #endif

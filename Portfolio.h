@@ -1,21 +1,24 @@
 #ifndef PORTFOLIO
 #define PORTFOLIO
 
-#include <vector>
-#include "Stock.h"
-
+#include <map>
+#include <set>
+#include "headers.h"
 using namespace std;
 
-namespace SE
-{	
-	class Portfolio
-	{
-		vector<pair<Stock,unsigned> > stocks;
-		Money netProfit;
+class Portfolio
+{
+	map<Stock,unsigned> holdings;
+	Money netProfit;
+	
+	public:
+	Portfolio() : netProfit(0) {}	
+	void buy(Stock s, unsigned amt, Date d);
+	unsigned sell(Stock s, unsigned amt, Date d);
 		
-		void buy(Stock s, unsigned amt);
-		void sell(Stock s, unsigned amt);
-	};
-}
+	Money getNetProfit();
+	unsigned getStockQuantity(Stock s);
+		
+};
 
 #endif

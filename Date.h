@@ -2,33 +2,34 @@
 #define DATE
 
 #include <ctime>
-#include <stdexcept>
+#include <iostream>
+#include "headers.h"
 using namespace std;
 
-namespace SE
+
+class Date
 {	
-	class Date
-	{
-		private:
-		unsigned char m;
-		unsigned char d;
-		int y;
-		struct tm sD;
-		time_t tD;
-		
-		public: 
-		//set date methods
-		Date(unsigned char month, unsigned char day, int year);
-		Date(tm date); //tm is a structure in ctime
-		Date(time_t epochTime); //time_t is the number of seconds since 1/1/1970
-		
-		//get date methods
-		unsigned char getMonth();
-		unsigned char getDay();
-		int getYear();
-		struct tm getDate();
-		time_t getTime();
-	};
-}
+	struct tm time;
+	
+	public: 
+	Date(int month, int day, int year);
+	Date(struct tm t);
+	Date(const Date &d);
+	
+	int getMonth() const;
+	int getDay() const;
+	int getYear() const;
+	
+	Date &operator++();
+	Date &operator--();
+	
+	Date operator+(int days);
+	Date operator-(int days);
+};
+
+ostream &operator<<(ostream &o, Date d);
+
+
+
 
 #endif

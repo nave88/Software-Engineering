@@ -1,21 +1,25 @@
 #ifndef STOCK
 #define STOCK
 
+#include <iostream>
 #include <string>
+using namespace std;
 
 //stock class for now is just a string of stock's ticker symbol
 
-namespace SE
+
+class Stock
 {
-	class Stock
-	{
-		std::string tickerSymbol;
+	std::string tickerSymbol;
+	
+	public:
+	Stock(const string tickerSymbol);
+	Stock(const char * tickerSymbol);
 		
-		public:
-		Stock(std::string tickerSymbol) : tickerSymbol(tickerSymbol) {}
-		
-		std::string getTickerSymbol();
-	};
-}
+	std::string getTickerSymbol() const;
+};
+
+ostream &operator<<(ostream &os, Stock s);
+bool operator<(const Stock &s1, const Stock &s2);
 
 #endif
