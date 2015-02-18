@@ -3,30 +3,27 @@
 
 #include "headers.h"
 
-namespace SE
-{	
-	class AutoStrategy
+class AutoStrategy
+{
+	private:
+	typedef void (*funcptr)(Date d);
+	funcptr trade;
+	void *handle;
+	string fileName;
+	Portfolio *portfolio;
+		
+	public:
+		
+	AutoStrategy(string strategyFileName);
+	void run(Date begin, Date end);
+		
+	Portfolio getPortfolio()
 	{
-		private:
-		typedef void (*funcptr)(Date d);
-		funcptr trade;
-		void *handle;
-		string fileName;
-		Portfolio *portfolio;
-		
-		public:
-		
-		AutoStrategy(string strategyFileName);
-		void run(Date begin, Date end);
-		
-		Portfolio getPortfolio()
-		{
-			return *portfolio;
-		}
+		return *portfolio;
+	}
 		
 		
-		~AutoStrategy(); 
-	};
-}
+	~AutoStrategy(); 
+};
 
 #endif

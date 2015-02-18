@@ -6,8 +6,7 @@ using namespace std;
 using namespace SE;
 
 
-namespace backtest
-{
+
 	//do actual work here
 	bool buy_helper(Stock s, unsigned amt, Portfolio &portfolio)
 	{
@@ -44,4 +43,4 @@ namespace backtest
 	{
 		return portfolio;
 	}
-}
+

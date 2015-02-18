@@ -5,7 +5,6 @@
 #include "Date.h"
 
 using namespace std;
-using namespace SE;
 
 extern "C" void plugin(Date d)
 {

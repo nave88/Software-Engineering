@@ -3,8 +3,6 @@
 #include "apifuncprogram.h"
 #include "headers.h"
 using namespace std;
-using namespace SE;
-using namespace backtest;
 
 Portfolio *p;
 

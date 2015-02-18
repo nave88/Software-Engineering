@@ -1,7 +1,6 @@
 #include "headers.h"
 #include <iostream>
 using namespace std;
-using namespace SE;
 
 int main()
 {
