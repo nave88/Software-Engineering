@@ -1,11 +1,8 @@
 #ifndef GETPRICE
 #define GETPRICE
 
-#include "Stock.h"
-#include "Date.h"
+#include "headers.h"
 
-
-Money getPrice(Stock s, Date d);
-
+Money getPrice(Stock s, QDate d);
 
 #endif

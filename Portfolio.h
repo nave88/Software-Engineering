@@ -8,15 +8,20 @@ using namespace std;
 
 class Portfolio
 {
-	map<Stock,unsigned> holdings;
-	Money netProfit;
 	
 	public:
-	Portfolio() : netProfit(0) {}	
-	void buy(Stock s, unsigned amt, Date d);
-	unsigned sell(Stock s, unsigned amt, Date d);
+	
+	map<Stock,unsigned> holdings;
+	Money cash;
+	
+	Portfolio(string s) : cash(s) {}	
+	void buy(Stock s, unsigned amt, QDate d);
+	unsigned sell(Stock s, unsigned amt, QDate d);
+	
+	void printPortfolio();
+	unsigned numStocksOwned(Stock s);
 		
-	Money getNetProfit();
+	Money getCash();
 	unsigned getStockQuantity(Stock s);
 		
 };

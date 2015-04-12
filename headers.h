@@ -2,10 +2,9 @@
 #define HEADERS
 
 #include "Stock.h"
-#include "Date.h"
+#include <QDate>
 #include "Money.h"
 #include "Portfolio.h"
-#include "AutoStrategy.h"
 #include "getPrice.h"
 
 #endif

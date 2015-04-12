@@ -1,13 +1,14 @@
-//#include "headers.h"
+#include "headers.h"
 #include <stdio.h>
 #include <curl/curl.h>
-#include <curl/types.h>
+//#include <curl/types.h>
 #include <curl/easy.h>
 #include <cstdlib>
 #include <string>
 #include <cstring>
 #include <fstream>
-//#include <QDate>
+#include <stdlib.h>
+#include <sstream>
 
 //in the future, the downloadCSV function will take args about the
 //stocks and different types of data required
@@ -20,22 +21,32 @@ size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream) {
     return written;
 }
 
-float getPrice(/*Stock stock, QDate date*/) {
+Money getPrice(Stock stock, QDate date) {
     CURL *pCurl;
     FILE *fptr;
     CURLcode codes;
 
 	//temporary stock & date selection
-	std::string stockName = "AAPL";
-	int dated = 9 //QDate.day();
-	int datem = 10 //QDate.month();
-	int datey = 2010 //QDate.year();
+	std::string stockName = stock.getTickerSymbol();
+	int dated = date.day();
+	int datem = date.month();
+	int datey = date.year();
 
 	//convert date to string format
 	datem=datem-1;
-	std::string dateds = std::itoa(dated);
-	std::string datems = std::itoa(datem);
-	std::string dateys = std::itoa(datey);
+	
+	stringstream datedsStream;
+	datedsStream << dated;
+	
+	stringstream datemsStream;
+	datemsStream << datem;
+	
+	stringstream dateysStream;
+	dateysStream << datey;
+	
+	std::string dateds = datedsStream.str();
+	std::string datems = datemsStream.str();
+	std::string dateys = dateysStream.str();
 
 	//create url
 	//format is yahoo base + stock + date start + date end (date format, m/d/y)
@@ -49,14 +60,15 @@ float getPrice(/*Stock stock, QDate date*/) {
 	//LIBCURL STUFF
 
 	//output file
-    char *outfilename = "C:\\data.csv";
+    char outfilename[] = "data.csv";
 
 	//easy handle
 	pCurl = curl_easy_init();
     if (pCurl) {
+        CURLcode res;
         fptr = fopen(outfilename,"wb");
 		//set url to download from
-        curl_easy_setopt(pCurl, CURLOPT_URL, url);
+        curl_easy_setopt(pCurl, CURLOPT_URL, charUrl);
 		//pass the data to the write_data() function
         curl_easy_setopt(pCurl, CURLOPT_WRITEFUNCTION, write_data);
 		//write the data
@@ -69,7 +81,7 @@ float getPrice(/*Stock stock, QDate date*/) {
 
 	//parse CSV
 	std::string line;
-	std::ifstream myfile ("C:\data.csv");
+	std::ifstream myfile ("./data.csv");
 
 	//get the second line
 	if(myfile.is_open())
@@ -85,13 +97,16 @@ float getPrice(/*Stock stock, QDate date*/) {
 	//locate the correct column
 	std::stringstream ss(line);
 	std::string output;
+	
 	int i = 0;
 	//i indicates the column you want, 0 = first, 1 = second, etc
-	while(std::getline(ss,output,',') && i<1){
+	while(std::getline(ss,output,',') && i<4){
 		//iterates through blocks of data
 		++i;
 	}
 
+	printf("%s\n", output.c_str());
+
 	delete charUrl;
-	return std::stof(line);
+	return Money(output);
 }
